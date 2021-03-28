@@ -2,6 +2,7 @@ from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import CommandHandler, CallbackContext
 from .model import Model
 from docx import Document
+import io
 
 TEACHER = 1
 Teacher = Model('teacher')
@@ -40,10 +41,13 @@ def get_result(update: Update, context: CallbackContext):
     document.add_page_break()
 
     document.save('demo.docx')
+    file_stream = io.BytesIO()
+    document.save(file_stream)
+    file_stream.seek(0)
 
     context.bot.send_document(
         chat_id=update.message.chat_id,
-        document=open('demo.docx', 'rb')
+        document=file_stream
     )
 
 
