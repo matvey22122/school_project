@@ -18,12 +18,20 @@ def start(update: Update, context: CallbackContext):
             {"username": username},
             {"$set": {"chat_id": update.message.chat_id}}
         )
+        context.bot.send_message(
+            chat_id=update.message.chat_id,
+            text="Вы успешно зарегистрированы"
+        )
         return TEACHER
 
     for _ in Parent.find_all({"username": username}):
         Parent.update(
             {"username": username},
             {"$set": {"chat_id": update.message.chat_id}}
+        )
+        context.bot.send_message(
+            chat_id=update.message.chat_id,
+            text="Вы успешно зарегистрированы"
         )
         return PARENT
 
