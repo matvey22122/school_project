@@ -3,7 +3,8 @@ import os
 
 
 class Model:
-    mongoClient = pymongo.MongoClient(os.environ.get('MONGO_URL'))
+    mongoUrl = os.environ.get('MONGO_URL')
+    mongoClient = pymongo.MongoClient(mongoUrl)
     db = mongoClient["school"]
 
     def __init__(self, col):
