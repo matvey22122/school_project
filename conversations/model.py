@@ -1,9 +1,9 @@
 import pymongo
+import os
 
 
 class Model:
-    mongoClient = pymongo.MongoClient("mongodb+srv://dbUser:123@cluster0.mvg33.mongodb.net/myFirstDatabase"
-                                      "?retryWrites=true&w=majority")
+    mongoClient = pymongo.MongoClient(os.environ.get('MONGO_URL'))
     db = mongoClient["school"]
 
     def __init__(self, col):
