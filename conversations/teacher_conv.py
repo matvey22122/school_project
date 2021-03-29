@@ -19,6 +19,7 @@ def get_result(update: Update, context: CallbackContext):
     document.add_heading('Отчет посещаемости', 0)
 
     table = document.add_table(rows=1, cols=3)
+    table.style = 'Table Grid'
 
     hdr_cells = table.rows[0].cells
     hdr_cells[0].text = 'ФИО ученика'
