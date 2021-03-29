@@ -37,17 +37,17 @@ def get_result(update: Update, context: CallbackContext):
         elif parent["is_attend"] == 0:
             row_cells[1].text = "Нет"
             row_cells[2].text = parent["reason"]
-    print(1)
+
     document.add_page_break()
 
     file_stream = io.BytesIO()
     document.save(file_stream)
     file_stream.seek(0)
-    print(2)
+
     context.bot.send_document(
         chat_id=update.message.chat_id,
         document=file_stream,
-        filename="result.docx"
+        filename="отчет.docx"
     )
 
 
