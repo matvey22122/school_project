@@ -6,7 +6,7 @@ from conversations.teacher_conv import TEACHER, teacher_conv
 from conversations.model import Model
 import os
 import logging
-
+import pytest
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -21,7 +21,7 @@ Parent = Model('parent')
 def start(update: Update, context: CallbackContext):
     username = update.message.from_user.username
 
-    for _ in Teacher.find_all({"username": username}):
+    if _is_teacher(username):
         Teacher.update(
             {"username": username},
             {"$set": {"chat_id": update.message.chat_id}}
@@ -42,6 +42,12 @@ def start(update: Update, context: CallbackContext):
             text="Вы успешно зарегистрированы"
         )
         return PARENT
+
+
+def _is_teacher(username):
+    for _ in Teacher.find_all({"username": username}):
+        return True
+    return False
 
 
 def error(update, context):
