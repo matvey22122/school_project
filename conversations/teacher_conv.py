@@ -64,7 +64,7 @@ def start_quest(update: Update, context: CallbackContext):
 
     for parent in parents:
         Parent.update(
-            {"username": username},
+            {"username": parent['username']},
             {"$set": {"is_attend": 2, "reason": ""}}
         )
         context.bot.send_message(
