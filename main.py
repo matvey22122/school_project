@@ -55,6 +55,10 @@ def error(update, context):
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 
+def exit():
+    return ConversationHandler.END
+
+
 def main():
     # Teacher.insert_one({"username": "matvey22122"})
     # Parent.insert_one({"teacher_username": "matvey22122", "children_fio": "Иванов Иван Иванович", "is_attend": 0, "reason": "Не захотел"})
