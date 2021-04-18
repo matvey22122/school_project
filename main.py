@@ -56,7 +56,7 @@ def error(update, context):
 
 
 def exit():
-    return ConversationHandler.END
+    pass
 
 
 def main():
